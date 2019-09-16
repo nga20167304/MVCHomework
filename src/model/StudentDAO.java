@@ -21,8 +21,8 @@ public class StudentDAO {
 		return student;
 	}
 
-	public void delete(Student student) {
-		studentMap.remove(student);
+	public static void delete(int studentId) {
+		studentMap.remove(studentId);
 	}
 
 	public static Student get(int studentId) {
