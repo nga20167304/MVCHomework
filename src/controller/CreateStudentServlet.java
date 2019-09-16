@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +40,12 @@ public class CreateStudentServlet extends HttpServlet {
 		}
 		
 		studentMap.put(student.getId(), student);
-	}
+		//Lưu thông tin vào request attribute trước khi forward sang views
+		request.setAttribute("studentMap", studentMap);
+		
+		RequestDispatcher requestDispatcher= request.getServletContext()
+                .getRequestDispatcher("/WEB-INF/admin/create.jsp");
+		requestDispatcher.forward(request, response);
+    }
 
 }

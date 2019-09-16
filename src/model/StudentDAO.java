@@ -1,15 +1,16 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import entity.Student;
 
 public class StudentDAO {
-	Map<Integer, Student> studentList = new HashMap<Integer, Student>();
-
+	static Map<Integer, Student> studentMap = new HashMap<Integer, Student>();
+	static Iterator<Integer> iterator = studentMap.keySet().iterator();
 	public Student create(Student student) {
-		if (studentList.containsKey(student.getId())) {
+		if (studentMap.containsKey(student.getId())) {
 
 		}
 		return student;
@@ -21,8 +22,16 @@ public class StudentDAO {
 	}
 
 	public void delete(Student student) {
-		studentList.remove(student);
+		studentMap.remove(student);
 	}
 
+	public static Student get(int studentId) {
+		for(Integer id : studentMap.keySet()) {
+			if(id==studentId)
+				return studentMap.get(id);
+		}
+		return null;
+	}
+	
 
 }
